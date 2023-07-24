@@ -11,8 +11,12 @@ body {
 @import "./Components/Input/input";
 @import "./Components/Button/button";
 @import "./Components/Navbar/navbar";
+@import "./Components/Sidebar/sidebar";
 @import "./Components/JobItem/jobItem";
 @import "./Components/Footer/footer";
+@import "./Components/Filters/filters";
 @import "./Screens/Login/login";
 @import "./Screens/Register/register";
 @import "./Screens/Landing/landing";
+@import "./Screens/Jobs/jobs";
+@import "./Screens/Dashboard/dashboard";

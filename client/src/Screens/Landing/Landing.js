@@ -31,6 +31,9 @@ const Landing = () => {
     const handleButton = () => {
         return navigate("/login")
     }
+    const loadMore = () => {
+        return navigate("/jobs")
+    }
     return <div className="landing_wrapper">
         <div className="header">
             <Navbar />
@@ -61,7 +64,10 @@ const Landing = () => {
             {jobs && jobs.map(job => {
                 return <JobItem {...job} />
             })}
+            <Button onClick={loadMore} style={{ alignSelf: "center" }}>Ucitaj jos</Button>
+
         </div>
+
         <Footer />
     </div>
 }

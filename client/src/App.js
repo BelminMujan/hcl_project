@@ -4,10 +4,13 @@ import Login from "./Screens/Login/Login";
 import Register from "./Screens/Register/Register";
 import Landing from "./Screens/Landing/Landing";
 import Api from "./Helpers/Api";
+import Jobs from "./Screens/Jobs/Jobs";
+import Dashboard from "./Screens/Dashboard/Dashboard";
+import { sidebar_urls } from "./Helpers/constants";
 
 const App = () => {
-  
-  const routes  = createBrowserRouter([
+
+  const routes = createBrowserRouter([
     {
       path: "",
       element: <Landing />
@@ -21,11 +24,16 @@ const App = () => {
       element: <Register />
     },
     {
-      path: "dashboard",
-      element: <div>Dashboard</div>
+      path: "jobs",
+      element: <Jobs />
     },
+    {
+      path: "dashboard",
+      element: <Dashboard />,
+      children: [...sidebar_urls]
+    }
   ])
-  return <RouterProvider  router={routes} />
+  return <RouterProvider router={routes} />
 }
 
 export default App

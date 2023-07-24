@@ -1,0 +1,14 @@
+.dashboard_wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .content {
+        display: flex;
+        flex-grow: 1;
+
+        .outlet {
+            padding: 1rem;
+        }
+    }
+}

@@ -51,6 +51,7 @@ body {
   justify-content: space-between;
   padding: 0.75rem 3rem;
   align-items: center;
+  z-index: 1000;
 }
 .navbar_wrapper div {
   display: flex;
@@ -61,6 +62,25 @@ body {
   color: black;
   padding: 0 6px;
   font-weight: 300;
+}
+
+.sidebar_wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #EBEBEB;
+  width: 240px;
+  margin-top: -56px;
+  padding-top: 56px;
+}
+.sidebar_wrapper .nav_link {
+  text-decoration: none;
+  color: black;
+  padding: 6px 22px;
+  font-weight: 300;
+  cursor: pointer;
+}
+.sidebar_wrapper .nav_link.active {
+  background-color: white;
 }
 
 .job_item {
@@ -111,6 +131,11 @@ body {
   margin: 180px 0 16px 0;
   width: 70%;
   border-bottom: 1px solid white;
+}
+
+.filters_wrapper {
+  height: 100%;
+  box-shadow: 2px 1px 2px lightgray;
 }
 
 .login_wrapper {
@@ -196,4 +221,25 @@ body {
   width: 80%;
   margin: 3rem auto;
   gap: 12px;
+}
+
+.jobs_wrapper .content {
+  max-width: 1400px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 200px auto;
+  gap: 10px;
+}
+
+.dashboard_wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.dashboard_wrapper .content {
+  display: flex;
+  flex-grow: 1;
+}
+.dashboard_wrapper .content .outlet {
+  padding: 1rem;
 }/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,20 @@
+.sidebar_wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: #EBEBEB;
+    width: 240px;
+    margin-top: -56px;
+    padding-top: 56px;
+
+    .nav_link {
+        text-decoration: none;
+        color: black;
+        padding: 6px 22px;
+        font-weight: 300;
+        cursor: pointer;
+
+        &.active {
+            background-color: white;
+        }
+    }
+}
