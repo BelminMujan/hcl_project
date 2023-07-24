@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+body {
+  font-family: "Roboto";
+  font-size: 16px;
+  margin: 0;
+}
+
+.input_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.input_wrapper input {
+  border-radius: 6px;
+  padding: 6px 10px;
+  border: 1px solid gray;
+}
+
+.button_wrapper {
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 6px 18px;
+}
+.button_wrapper.version_1 {
+  background-color: #FF8040;
+  color: white;
+  font-size: 1rem;
+}
+.button_wrapper.version_2 {
+  background-color: transparent;
+  color: #FF8040;
+  border: 1px solid #FF8040;
+}
+
+.navbar_wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 3rem;
+  align-items: center;
+}
+.navbar_wrapper div {
+  display: flex;
+  gap: 0.5rem;
+}
+.navbar_wrapper .nav_link {
+  text-decoration: none;
+  color: black;
+  padding: 0 6px;
+  font-weight: 300;
+}
+
+.login_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-top: 20vh;
+}
+.login_wrapper .input_wrapper {
+  width: 220px;
+}
+
+.register_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-top: 20vh;
+}
+.register_wrapper .input_wrapper {
+  width: 220px;
+}
+
+.landing_wrapper .header {
+  height: 100vh;
+  box-sizing: border-box;
+  background-image: url("./Assets/header_img.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.landing_wrapper .header .logan {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15%;
+  margin-left: 60%;
+}
+.landing_wrapper .header .logan h2 {
+  margin: 0;
+  font-size: 3rem;
+}
+.landing_wrapper .header .logan div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+.landing_wrapper .header .logan div:last-child p {
+  width: 100px;
+  border: 1px solid red;
+  margin: 0;
+  text-align: center;
+}
+.landing_wrapper .header .logan h3 {
+  color: #FF8040;
+  font-size: 3rem;
+  margin: 0;
+}
+.landing_wrapper section {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+.landing_wrapper section h2 {
+  font-size: 4rem;
+  margin: 1rem;
+}/*# sourceMappingURL=styles.css.map */

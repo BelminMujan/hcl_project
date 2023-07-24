@@ -1,0 +1,18 @@
+.button_wrapper{
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all .2s ease;
+    padding: 6px 18px;
+
+    &.version_1{
+        background-color: $orange;
+        color: white;
+        font-size: 1rem;
+    }
+    &.version_2{
+        background-color: transparent;
+        color: $orange;
+        border: 1px solid $orange;
+    }
+}

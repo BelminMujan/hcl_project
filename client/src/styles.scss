@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+$orange: #FF8040;
+
+body {
+    font-family: "Roboto";
+    font-size: 16px;
+    margin: 0;
+}
+
+@import "./Components/Input/input";
+@import "./Components/Button/button";
+@import "./Components/Navbar/navbar";
+@import "./Screens/Login/login";
+@import "./Screens/Register/register";
+@import "./Screens/Landing/landing";

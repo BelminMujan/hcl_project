@@ -1,0 +1,18 @@
+.navbar_wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 3rem;
+    align-items: center;
+
+    div {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .nav_link {
+        text-decoration: none;
+        color: black;
+        padding: 0 6px;
+        font-weight: 300;
+    }
+}
