@@ -16,16 +16,29 @@ body {
 }
 
 .button_wrapper {
-  border-radius: 8px;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+.button_wrapper:hover {
+  transform: scale(1.02);
+}
+.button_wrapper:active {
+  transform: scale(0.98);
+}
+.button_wrapper.size_1 {
+  border-radius: 8px;
   padding: 6px 18px;
+  font-size: 1rem;
+}
+.button_wrapper.size_2 {
+  border-radius: 8px;
+  padding: 8px 22px;
+  font-size: 1.25rem;
 }
 .button_wrapper.version_1 {
   background-color: #FF8040;
   color: white;
-  font-size: 1rem;
 }
 .button_wrapper.version_2 {
   background-color: transparent;
@@ -48,6 +61,56 @@ body {
   color: black;
   padding: 0 6px;
   font-weight: 300;
+}
+
+.job_item {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 120px auto 220px;
+  box-shadow: 0 0 2px gray;
+  padding: 10px 25px;
+  border-radius: 8px;
+}
+.job_item .image {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 5rem;
+  background-color: #FF8040;
+  text-align: center;
+  line-height: 5rem;
+  color: white;
+  font-size: 3rem;
+  font-weight: 600;
+}
+.job_item .details h3,
+.job_item .details p {
+  margin: 0;
+}
+.job_item .details div {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 8px;
+}
+.job_item .details div p {
+  margin: 0;
+}
+.job_item .details div p img {
+  margin-right: 4px;
+}
+
+.footer_wrapper {
+  min-height: 240px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.85);
+  align-items: center;
+}
+.footer_wrapper .line {
+  margin: 180px 0 16px 0;
+  width: 70%;
+  border-bottom: 1px solid white;
 }
 
 .login_wrapper {
@@ -120,8 +183,17 @@ body {
   justify-content: space-evenly;
   align-items: center;
   text-align: center;
+  margin: 2rem 0;
 }
 .landing_wrapper section h2 {
   font-size: 4rem;
   margin: 1rem;
+}
+.landing_wrapper .job_list_landing {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  width: 80%;
+  margin: 3rem auto;
+  gap: 12px;
 }/*# sourceMappingURL=styles.css.map */

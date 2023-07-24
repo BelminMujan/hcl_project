@@ -49,10 +49,20 @@
         justify-content: space-evenly;
         align-items: center;
         text-align: center;
+        margin: 2rem 0;
 
         h2 {
             font-size: 4rem;
             margin: 1rem
         }
+    }
+
+    .job_list_landing {
+        display: flex;
+        flex-direction: column;
+        max-width: 1000px;
+        width: 80%;
+        margin: 3rem auto;
+        gap: 12px;
     }
 }

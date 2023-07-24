@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import img1 from "../../Assets/image 2.png"
 import img2 from "../../Assets/image 3.png"
 import Button from "../../Components/Button/Button";
 import { useNavigate } from "react-router-dom";
+import JobItem from "../../Components/JobItem/JobItem";
+import Footer from "../../Components/Footer/Footer";
 const Landing = () => {
     const navigate = useNavigate()
+
+    const [jobs, setJobs] = useState([
+        {
+            title: "Potreban elektricar",
+            description: "Potrebno postavljanje dodatnih uticnica",
+            location: "Sarajevo, centar",
+            duration: "2 do 3 sata"
+        }, {
+            title: "Potreban elektricar",
+            description: "Potrebno postavljanje dodatnih uticnica",
+            location: "Sarajevo, centar",
+            duration: "2 do 3 sata"
+        }, {
+            title: "Potreban elektricar",
+            description: "Potrebno postavljanje dodatnih uticnica",
+            location: "Sarajevo, centar",
+            duration: "2 do 3 sata"
+        },
+    ])
+
     const handleButton = () => {
         return navigate("/login")
     }
@@ -24,7 +46,7 @@ const Landing = () => {
         <section>
             <div>
                 <h2>Nudis neke <br />usluge?</h2>
-                <Button onClick={handleButton}>Prijavi se</Button>
+                <Button size={2} onClick={handleButton}>Prijavi se</Button>
             </div>
             <img src={img1} />
         </section>
@@ -32,9 +54,15 @@ const Landing = () => {
             <img src={img2} />
             <div>
                 <h2>Potrebne su <br />ti usluge?</h2>
-                <Button onClick={handleButton}>Prijavi se</Button>
+                <Button size={2} onClick={handleButton}>Prijavi se</Button>
             </div>
         </section>
+        <div className="job_list_landing">
+            {jobs && jobs.map(job => {
+                return <JobItem {...job} />
+            })}
+        </div>
+        <Footer />
     </div>
 }
 

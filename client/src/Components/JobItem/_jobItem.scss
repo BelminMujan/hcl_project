@@ -1,0 +1,44 @@
+.job_item {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 120px auto 220px;
+    box-shadow: 0 0 2px gray;
+    padding: 10px 25px;
+    border-radius: 8px;
+
+    .image {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 5rem;
+        background-color: $orange;
+        text-align: center;
+        line-height: 5rem;
+        color: white;
+        font-size: 3rem;
+        font-weight: 600;
+    }
+
+    .details {
+
+        h3,
+        p {
+            margin: 0;
+        }
+
+        div {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 8px;
+
+            p {
+                margin: 0;
+
+                img {
+                    margin-right: 4px;
+                }
+            }
+        }
+    }
+
+}
