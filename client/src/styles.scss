@@ -8,6 +8,11 @@ body {
     margin: 0;
 }
 
+.error-message {
+    color: red;
+    margin: 0;
+}
+
 @import "./Components/Input/input";
 @import "./Components/Button/button";
 @import "./Components/Navbar/navbar";

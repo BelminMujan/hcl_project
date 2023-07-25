@@ -5,6 +5,11 @@ body {
   margin: 0;
 }
 
+.error-message {
+  color: red;
+  margin: 0;
+}
+
 .input_wrapper {
   display: flex;
   flex-direction: column;
@@ -193,7 +198,6 @@ body {
 }
 .landing_wrapper .header .logan div:last-child p {
   width: 100px;
-  border: 1px solid red;
   margin: 0;
   text-align: center;
 }
@@ -223,8 +227,15 @@ body {
   gap: 12px;
 }
 
+.jobs_wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 .jobs_wrapper .content {
+  flex-grow: 1;
   max-width: 1400px;
+  width: 100%;
   margin: auto;
   display: grid;
   grid-template-columns: 200px auto;

@@ -9,7 +9,7 @@ const Sidebar = () => {
 
     return <div className="sidebar_wrapper">
         {sidebar_urls.map(nav => {
-            return <NavLink className={"nav_link"} to={nav.path}>{nav.label}</NavLink>
+            return <NavLink key={nav.path} className={"nav_link"} to={nav.path}>{nav.label}</NavLink>
         })}
     </div>
 }
