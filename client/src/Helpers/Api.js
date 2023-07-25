@@ -99,6 +99,36 @@ class Api {
         })
     }
 
+    get_jobs(type = null) {
+        return new Promise((resolve, reject) => {
+            try {
+                let path = process.env.REACT_APP_API + "/jobs"
+                if (type) {
+                    path += "/" + type
+                }
+                fetch(path, {
+                    method: "GET",
+                    headers: {
+                        ...this.headers,
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    },
+                }).then((res) => {
+                    if (res.status === 200) {
+                        res.json().then(data => {
+                            console.log(data);
+                            resolve(data)
+                        })
+                    }
+
+                })
+            } catch (error) {
+                console.log("Error gettig public jobs")
+                console.log(error)
+                reject(error)
+            }
+        })
+    }
+
 }
 
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import JobItem from "../../Components/JobItem/JobItem";
 import Navbar from "../../Components/Navbar/Navbar";
 import Filters from "../../Components/Filters/Filters";
@@ -7,9 +7,7 @@ import Api from "../../Helpers/Api";
 import { useSelector } from "react-redux";
 
 const Jobs = () => {
-    const [jobs, setJobs] = useState(
-
-    )
+    const [jobs, setJobs] = useState()
     let api = new Api()
     let user = useSelector(state => state.user)
     if (!user || !Object.keys(user).length) {
@@ -17,6 +15,13 @@ const Jobs = () => {
             console.log(res);
         })
     }
+
+    useEffect(() => {
+        api.get_jobs().then(data => {
+            setJobs([...data])
+        })
+    }, [])
+
     return <div className="jobs_wrapper">
         <Navbar />
         <div className="content">

@@ -74,8 +74,8 @@ body {
   flex-direction: column;
   background-color: #EBEBEB;
   width: 240px;
-  margin-top: -56px;
-  padding-top: 56px;
+  margin-top: -64px;
+  padding-top: 64px;
 }
 .sidebar_wrapper .nav_link {
   text-decoration: none;
@@ -241,6 +241,13 @@ body {
   grid-template-columns: 200px auto;
   gap: 10px;
 }
+.jobs_wrapper .content .jobs_list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
 
 .dashboard_wrapper {
   min-height: 100vh;
@@ -253,4 +260,10 @@ body {
 }
 .dashboard_wrapper .content .outlet {
   padding: 1rem;
+}
+
+.moje_potraznje_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }/*# sourceMappingURL=styles.css.map */

@@ -37,5 +37,17 @@ async function runMigrations() {
         console.error('Error running migrations:', err);
     }
 }
+async function rollbackLastMigration() {
+    try {
+        const [migration] = await umzug.down();
+        if (migration) {
+            console.log(`Rolled back migration: ${migration.file}`);
+        } else {
+            console.log('No migration to rollback.');
+        }
+    } catch (error) {
+        console.error('Error rolling back migration:', error);
+    }
+}
 
-module.exports = { sequelize, runMigrations };
+module.exports = { sequelize, runMigrations, rollbackLastMigration };
