@@ -20,6 +20,9 @@ class Api {
                             store.dispatch({ type: "login_success", payload: json.user })
                             resolve({ goto: "/dashboard" })
                         }
+                        if (json.error) {
+                            reject({ error: json.error })
+                        }
                     })
                 }).catch(e => {
                     console.log("Error registering user on server:")
@@ -99,30 +102,33 @@ class Api {
         })
     }
 
-    get_jobs(type = null) {
+    request(path, method = "GET", data = null) {
         return new Promise((resolve, reject) => {
             try {
-                let path = process.env.REACT_APP_API + "/jobs"
-                if (type) {
-                    path += "/" + type
-                }
-                fetch(path, {
-                    method: "GET",
+                let requestData = {
+                    method: method,
                     headers: {
                         ...this.headers,
                         Authorization: `Bearer ${localStorage.getItem("token")}`
                     },
-                }).then((res) => {
+                }
+                if (method === "POST") {
+                    requestData["body"] = JSON.stringify(data)
+                }
+                fetch(process.env.REACT_APP_API + path, requestData).then((res) => {
+                    console.log(res);
                     if (res.status === 200) {
                         res.json().then(data => {
-                            console.log(data);
                             resolve(data)
                         })
+                    } else {
+                        res.json().then(error => {
+                            reject(error)
+                        })
                     }
-
                 })
             } catch (error) {
-                console.log("Error gettig public jobs")
+                console.log("Error:")
                 console.log(error)
                 reject(error)
             }

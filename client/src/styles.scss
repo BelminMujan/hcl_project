@@ -13,6 +13,16 @@ body {
     margin: 0;
 }
 
+.job_list {
+    // background-color: red;
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+    width: 90%;
+    margin: 3rem auto;
+    gap: 12px;
+}
+
 @import "./Components/Input/input";
 @import "./Components/Button/button";
 @import "./Components/Navbar/navbar";
@@ -20,9 +30,11 @@ body {
 @import "./Components/JobItem/jobItem";
 @import "./Components/Footer/footer";
 @import "./Components/Filters/filters";
+@import "./Components/Modal/modal";
+@import "./Components/NoviOglas/noviOglas";
 @import "./Screens/Login/login";
 @import "./Screens/Register/register";
 @import "./Screens/Landing/landing";
 @import "./Screens/Jobs/jobs";
 @import "./Screens/Dashboard/dashboard";
-@import "./Screens/Dashboard/mojePotraznje/mojePotraznje";
+@import "./Screens/Dashboard/oglasi/oglasi";

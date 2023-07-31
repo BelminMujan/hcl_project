@@ -77,10 +77,13 @@ const register = async (req, res) => {
 const auto_login = async (req, res) => {
     try {
         let query = await User.findOne({ where: { email: req.user.email } });
-        let user = query.get()
-        delete user.password
-        let token = jwt.sign({ userId: user.id, email: user.email }, process.env.JWT, { expiresIn: "1h" })
-        res.json({ message: "Autologin successful", user: user, token: token });
+        if (query) {
+            let user = query.get()
+            delete user.password
+            let token = jwt.sign({ userId: user.id, email: user.email }, process.env.JWT, { expiresIn: "1h" })
+            res.json({ message: "Autologin successful", user: user, token: token });
+        }
+
     } catch (error) {
         console.log(error)
         res.status(500).json({ error: "Internal server error on register" })

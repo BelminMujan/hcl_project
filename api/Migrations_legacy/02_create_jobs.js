@@ -46,7 +46,7 @@ module.exports = {
                 allowNull: false
             },
             images: {
-                type: Sequelize.TEXT,
+                type: Sequelize.ARRAY,
                 allowNull: true,
                 get() {
                     return JSON.parse(this.getDataValue('images') || '[]');

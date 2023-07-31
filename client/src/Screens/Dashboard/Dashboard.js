@@ -11,23 +11,6 @@ const Dashboard = () => {
     const navigate = useNavigate()
     let api = new Api()
     let user = useSelector(state => state.user)
-    useEffect(() => {
-        if (!token) {
-            return navigate("/login");
-        }
-        if (token) {
-            console.log(user);
-            if (!user || !Object.keys(user).length) {
-                api.auto_login().then((res) => {
-                    console.log(res);
-                }).catch(e => {
-                    localStorage.removeItem("token")
-                    return navigate("/login");
-                })
-            }
-        }
-    }, [])
-
 
     return <div className="dashboard_wrapper">
         <Navbar />

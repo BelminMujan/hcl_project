@@ -1,7 +1,7 @@
 .job_item {
     display: grid;
     align-items: center;
-    grid-template-columns: 120px auto 220px;
+    grid-template-columns: 120px auto auto;
     box-shadow: 0 0 2px gray;
     padding: 10px 25px;
     border-radius: 8px;
@@ -27,6 +27,7 @@
 
         div {
             display: flex;
+            flex-direction: row;
             align-items: center;
             gap: 1.5rem;
             margin-top: 8px;
@@ -41,4 +42,15 @@
         }
     }
 
+    .actions {
+        display: flex;
+        gap: 4px;
+        flex-direction: row;
+        align-items: center;
+        justify-self: flex-end;
+    }
+
+    .save_action {
+        cursor: pointer;
+    }
 }

@@ -12,14 +12,41 @@
         grid-template-columns: 200px auto;
         gap: 10px;
 
+        .sve_preporuceno {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 8px;
+            overflow: hidden;
+            color: $orange;
+            border: 1px solid $orange;
+            text-align: center;
+            width: 250px;
+            height: 2.25rem;
+            line-height: 2.25rem;
+            margin: 1rem auto;
+            user-select: none;
 
-        .jobs_list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding: 0 1rem;
-            box-sizing: border-box;
+            .item {
+                &.active {
+                    background-color: $orange;
+                    color: white;
+                }
+
+                &:not(.active) {
+                    cursor: pointer;
+                }
+            }
         }
+
+        // .jobs_list {
+        //     display: flex;
+        //     flex-direction: column;
+        //     gap: 10px;
+        //     padding: 0 1rem;
+        //     box-sizing: border-box;
+
+
+        // }
     }
 
 }

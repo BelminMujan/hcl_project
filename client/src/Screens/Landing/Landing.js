@@ -60,9 +60,9 @@ const Landing = () => {
                 <Button size={2} onClick={handleButton}>Prijavi se</Button>
             </div>
         </section>
-        <div className="job_list_landing">
+        <div className="job_list">
             {jobs && jobs.map(job => {
-                return <JobItem {...job} />
+                return <JobItem {...job} actions={<Actions1 />} />
             })}
             <Button onClick={loadMore} style={{ alignSelf: "center" }}>Ucitaj jos</Button>
 
@@ -73,3 +73,9 @@ const Landing = () => {
 }
 
 export default Landing
+
+const Actions1 = () => {
+    return <div className="actions">
+        <Button size={2}>Prijavi se za posao</Button>
+    </div>
+}

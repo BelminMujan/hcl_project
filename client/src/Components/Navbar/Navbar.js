@@ -29,8 +29,8 @@ const Navbar = () => {
             to: "/"
         }
     ]
-
     const user = useSelector(state => state.user)
+
     return <div className="navbar_wrapper">
         <img src={logo} />
         <div>
@@ -38,7 +38,7 @@ const Navbar = () => {
                 return <NavLink key={nav.to + i} className={"nav_link"} to={nav.to}>{nav.label}</NavLink>
             })}
         </div>
-        {user ? <Link to={"/dashboard/podesavanje_profila"}>
+        {user && Object.keys(user).length > 0 ? <Link to={"/dashboard/podesavanje_profila"}>
             <img src={user_img} />
         </Link> : <div>
             <Link to={"/login"}><Button>Login</Button></Link>

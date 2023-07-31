@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const { sequelize } = require("../database")
 
-const Job = sequelize.define('Job', {
+const Job = sequelize.define('Jobs', {
     title: {
         type: DataTypes.STRING,
         allowNull: false
@@ -31,17 +31,24 @@ const Job = sequelize.define('Job', {
         allowNull: true
     },
     termin_do: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
         allowNull: true
     },
     termin_od: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
         allowNull: true
     },
     images: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: true
-    }
+        type: DataTypes.STRING,
+        allowNull: true,
+        get() {
+            const images = this.getDataValue('images');
+            return images ? JSON.parse(images) : [];
+        },
+        set(value) {
+            this.setDataValue('images', value ? JSON.stringify(value) : null);
+        },
+    },
 }, {
 });
 

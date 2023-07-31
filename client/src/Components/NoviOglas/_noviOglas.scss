@@ -1,0 +1,11 @@
+.novi_oglas_modal {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    .inline {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+}

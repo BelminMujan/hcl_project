@@ -5,6 +5,7 @@ const bodyParser = require("body-parser")
 const { sequelize, runMigrations, rollbackLastMigration } = require('./database');
 const authRouter = require("./Routes/authRouter")
 const jobsRouter = require("./Routes/jobsRouter")
+require('./Models/associations');
 
 const app = express()
 app.use(cors())
