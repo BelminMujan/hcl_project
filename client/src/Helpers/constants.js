@@ -1,5 +1,5 @@
 import Kontakti from "../Screens/Dashboard/kontakti/Kontakti";
-import MojePonude from "../Screens/Dashboard/mojePonude/mojePonude";
+import MojaUsluge from "../Screens/Dashboard/mojeUsluge/mojeUsluge";
 import Oglasi from "../Screens/Dashboard/oglasi/oglasi";
 import PodesavanjeProfila from "../Screens/Dashboard/podesavanjeProfila/podesavanjeProfila";
 import Poruke from "../Screens/Dashboard/poruke/poruke";
@@ -32,7 +32,7 @@ export const sidebar_urls = [
     {
         label: "Moje usluge",
         path: "moje_ponude",
-        element: <MojePonude />
+        element: <MojaUsluge />
     },
     {
         label: "Moji oglasi",

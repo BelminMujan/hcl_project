@@ -144,6 +144,9 @@ body {
   cursor: pointer;
 }
 
+.usluga_item .image {
+  background-color: #FF8040;
+}
 .footer_wrapper {
   min-height: 240px;
   color: white;
@@ -363,6 +366,12 @@ body {
 }
 
 .poslovi_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.moje_usluge_wrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;

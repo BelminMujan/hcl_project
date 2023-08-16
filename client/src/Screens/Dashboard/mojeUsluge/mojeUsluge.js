@@ -3,7 +3,8 @@ import Button from "../../../Components/Button/Button";
 import NovaUsluga from "../../../Components/NovaUsluga/NovaUsluga"
 import Api from "../../../Helpers/Api";
 import JobItem from "../../../Components/JobItem/JobItem";
-const MojePonude = () => { //Moje usluge
+import UslugaItem from "../../../Components/UslugaItem/UslugaItem";
+const MojaUsluge = () => { //Moje usluge
     const [usluge, setUsluge] = useState([])
     const [novaUsluga, setNovaUsluga] = useState(false)
     const closeModal = () => {
@@ -17,15 +18,16 @@ const MojePonude = () => { //Moje usluge
             console.log(e)
         })
     }, [])
-    return <div className="moje_ponude_wrapper">
+    return <div className="moje_usluge_wrapper">
         <div>
             <Button onClick={() => setNovaUsluga(true)}>Nova usluga</Button>
-            {novaUsluga && <NovaUsluga close={closeModal} />}
-            {usluge && usluge.map(u => {
-                return <JobItem {...u} />
-            })}
         </div>
+
+        {novaUsluga && <NovaUsluga close={closeModal} />}
+        {usluge && usluge.map(u => {
+            return <UslugaItem {...u} />
+        })}
     </div>
 }
 
-export default MojePonude
+export default MojaUsluge

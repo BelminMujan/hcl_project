@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 
 $orange: #FF8040;
+$green: #FF8040;
 
 body {
     font-family: "Roboto";
@@ -28,6 +29,7 @@ body {
 @import "./Components/Navbar/navbar";
 @import "./Components/Sidebar/sidebar";
 @import "./Components/JobItem/jobItem";
+@import "./Components/UslugaItem/uslugaItem";
 @import "./Components/Footer/footer";
 @import "./Components/Filters/filters";
 @import "./Components/Modal/modal";
@@ -40,3 +42,4 @@ body {
 @import "./Screens/Dashboard/podesavanjeProfila/podesavanjeProfila";
 @import "./Screens/Dashboard/oglasi/oglasi";
 @import "./Screens/Dashboard/poslovi/poslovi";
+@import "./Screens/Dashboard/mojeUsluge/mojeUsluge";
