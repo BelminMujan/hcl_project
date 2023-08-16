@@ -1,5 +1,5 @@
 const { Sequelize } = require("sequelize");
-const { Umzug, SequelizeStorage } = require('umzug');
+// const { Umzug, SequelizeStorage } = require('umzug');
 
 
 const sequelize = new Sequelize(process.env.DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
@@ -26,6 +26,7 @@ sequelize
 
 
 
+//legacy migrations
 // const umzug = new Umzug({
 //     migrations: { glob: 'Migrations/*.js' },
 //     context: sequelize.getQueryInterface(),

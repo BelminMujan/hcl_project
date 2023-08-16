@@ -5,6 +5,7 @@ const bodyParser = require("body-parser")
 const { sequelize, runMigrations, rollbackLastMigration } = require('./database');
 const authRouter = require("./Routes/authRouter")
 const jobsRouter = require("./Routes/jobsRouter")
+const uslugeRouter = require("./Routes/uslugeRouter")
 require('./Models/associations');
 
 const app = express()
@@ -13,6 +14,7 @@ app.use(bodyParser.json())
 
 app.use("/auth", authRouter)
 app.use("/jobs", jobsRouter)
+app.use("/usluga", uslugeRouter)
 
 
 app.get("/migrate", (req, res) => {
