@@ -3,6 +3,7 @@ import Input from "../../Components/Input/Input"
 import Button from "../../Components/Button/Button"
 import { Link, useNavigate } from "react-router-dom"
 import Api from "../../Helpers/Api"
+import { toast } from "react-hot-toast"
 
 const Register = () => {
     const [email, setEmail] = useState("")
@@ -15,7 +16,10 @@ const Register = () => {
     const navigate = useNavigate()
     const handleRegister = () => {
         api.register({ email, firstName, lastName, password, passwordConfirm }).then(res => {
-            return navigate(res.goto)
+            console.log("registraicja uspjesna");
+            toast.success("Registracija uspjesan")
+            navigate("/dashboard/podesavanje_profila")
+            navigate(0)
         }).catch(e => {
             setError(e.error)
         })

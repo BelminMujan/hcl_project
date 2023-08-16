@@ -56,7 +56,7 @@ const Actions1 = (props) => {
     let api = new Api()
 
     return <div className="actions">
-        <Button onClick={props.izbrisiOglas} size={2}>Izbrisi</Button>
-        <Button size={2}>Detalji</Button>
+        <Button onClick={props.izbrisiOglas}>Izbrisi</Button>
+        <Button >Detalji</Button>
     </div>
 }

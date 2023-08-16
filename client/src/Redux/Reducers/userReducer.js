@@ -4,7 +4,7 @@ const userReducer = (state = {}, action) => {
     switch (action.type) {
         case 'login_success':
             return { ...action.payload };
-        case 'logut':
+        case 'logout':
             return {};
         default:
             return state;

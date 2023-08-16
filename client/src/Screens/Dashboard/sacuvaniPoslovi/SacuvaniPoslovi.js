@@ -46,12 +46,12 @@ const Actions1 = ({ removeFromSaved }) => {
     const api = new Api()
 
     return <div className="actions">
-        <Button onClick={removeFromSaved} size={2}>Izbrisi</Button>
+        <Button onClick={removeFromSaved}>Izbrisi</Button>
     </div>
 }
 
 const Actions2 = (props) => {
     return <div className="actions">
-        <Button size={2}>Detalji</Button>
+        <Button>Detalji</Button>
     </div>
 }

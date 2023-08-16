@@ -24,6 +24,12 @@ const UserJob = sequelize.define('UserJob', {
         }
     },
 }, {
+    indexes: [
+        {
+            unique: true,
+            fields: ["userId", "jobId"]
+        }
+    ]
 });
 
 module.exports = UserJob

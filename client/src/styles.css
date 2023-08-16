@@ -350,8 +350,20 @@ body {
   width: 70%;
 }
 
+.podesavanje_profila_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .moje_potraznje_wrapper {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.poslovi_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }/*# sourceMappingURL=styles.css.map */

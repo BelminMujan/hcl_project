@@ -3,6 +3,7 @@ import Input from "../../Components/Input/Input"
 import Button from "../../Components/Button/Button"
 import { Link, useNavigate } from "react-router-dom"
 import Api from "../../Helpers/Api"
+import { toast } from "react-hot-toast"
 
 const Login = () => {
     const [email, setEmail] = useState("")
@@ -17,7 +18,10 @@ const Login = () => {
 
     const handleLogin = () => {
         api.login({ email, password }).then(res => {
-            return navigate(res.goto)
+
+            toast.success("Login uspjesan")
+            navigate("/dashboard/podesavanje_profila")
+            navigate(0)
         }).catch(e => {
             if (e.error) {
                 setError(e.error)

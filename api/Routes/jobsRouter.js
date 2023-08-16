@@ -1,9 +1,9 @@
 const express = require("express");
 const jobsController = require("../Controllers/jobs");
-const authenticate = require("../Middleware/auth");
+const { authenticate, maybeAuthenticate } = require("../Middleware/auth");
 const router = express.Router();
 
-router.get("/", jobsController.get);
+router.get("/", maybeAuthenticate, jobsController.get);
 router.get("/:type", authenticate, jobsController.get);
 router.get("/save/:id", authenticate, jobsController.save_job);
 router.get("/remove_saved/:id", authenticate, jobsController.remove_saved_job);

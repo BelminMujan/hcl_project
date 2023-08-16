@@ -22,7 +22,7 @@ const Navbar = () => {
         },
         {
             label: "Offer work",
-            to: "/jobs"
+            to: "/dashboard/oglasi"
         },
         {
             label: "About us",
@@ -32,12 +32,12 @@ const Navbar = () => {
     const user = useSelector(state => state.user)
 
     return <div className="navbar_wrapper">
-        <img src={logo} />
-        <div>
+        <Link to="/"><img src={logo} /></Link>
+        {!window.location.pathname.includes("dashboard") && <div>
             {navs.map((nav, i) => {
                 return <NavLink key={nav.to + i} className={"nav_link"} to={nav.to}>{nav.label}</NavLink>
             })}
-        </div>
+        </div>}
         {user && Object.keys(user).length > 0 ? <Link to={"/dashboard/podesavanje_profila"}>
             <img src={user_img} />
         </Link> : <div>

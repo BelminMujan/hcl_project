@@ -23,7 +23,19 @@ const get = async (req, res) => {
                 console.log(jobs);
                 break;
             default:
-                jobs = await Job.findAll({})
+                let users = await Job.findAll({
+                    include: {
+                        model: User,
+                        as: "usersSaved",
+                    }
+                })
+
+                jobs = users.map(job => {
+                    let temp = job.toJSON()
+                    temp.isSaved = job.usersSaved.filter(user => user.id === req.user?.userId).length
+                    delete temp.usersSaved
+                    return temp
+                })
                 break;
         }
         return res.status(200).json(jobs)
@@ -39,17 +51,28 @@ const save_job = async (req, res) => {
         if (!jobId || !userId) {
             return res.status(400).json({ error: "User id or job id is missing" })
         }
+        let existing = await UserJob.findAll({ where: { userId: userId, jobId: jobId } })
+        if (existing && existing.length > 0) {
+            console.log(existing);
+            await UserJob.destroy({
+                where: {
+                    userId: userId,
+                    jobId: jobId,
+                }
+            });
+            return res.status(200).json({ message: "Posao uklonjen iz sacuvanih", isSaved: false })
+        }
         await UserJob.create({
             userId: userId,
             jobId: jobId,
         });
         console.log("Job saved");
-        return res.status(200).json({ success: "Job saved" })
+        return res.status(200).json({ message: "Posao sacuvan", isSaved: true })
     } catch (error) {
         res.status(500).json({ error: "Internal server error on register" })
     }
 }
-const remove_saved_job = async (req, res) => {
+const remove_saved_job = async (req, res) => {  //depricated
     try {
         let jobId = req.params.id
         let userId = req.user.userId
@@ -63,7 +86,7 @@ const remove_saved_job = async (req, res) => {
             }
         });
         console.log("Job removed from saved");
-        return res.status(200).json({ success: "Job saved" })
+        return res.status(200).json({ success: "Job removed", isSaved: false })
     } catch (error) {
         res.status(500).json({ error: "Internal server error on register" })
     }
@@ -76,7 +99,7 @@ const objavi_oglas = async (req, res) => {
             return res.status(400).json({ error: "Naslov, opis i grad su neophodni" });
         }
 
-        let adv = await Job.create({
+        Job.create({
             userId: req.user.userId,
             title: title,
             description: description,

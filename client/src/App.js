@@ -29,7 +29,7 @@ const App = () => {
       element: <Jobs />
     },
     {
-      path: "dashboard",
+      path: "/dashboard",
       element: <Dashboard />,
       children: [...sidebar_urls]
     }

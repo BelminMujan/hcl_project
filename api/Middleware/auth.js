@@ -15,4 +15,14 @@ const authenticate = (req, res, next) => {
     })
 }
 
-module.exports = authenticate
+const maybeAuthenticate = (req, res, next) => {
+    let token = req.header("Authorization")?.split(" ")[1]
+    if (token) {
+        jwt.verify(token, process.env.JWT, (err, user) => {
+            req.user = user
+        })
+    }
+    next()
+}
+
+module.exports = { authenticate, maybeAuthenticate }

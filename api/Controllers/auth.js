@@ -89,4 +89,27 @@ const auto_login = async (req, res) => {
         res.status(500).json({ error: "Internal server error on register" })
     }
 }
-module.exports = { login, register, auto_login }
+
+const update_profile = async (req, res) => {
+    try {
+        let user = await User.findOne({ where: { id: req.body.id } });
+        if (user) {
+            await user.update({
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                password: req.body.password
+            });
+
+            res.status(200).json({ message: "Profile updated successfully" });
+        } else {
+            res.status(404).json({ error: "User not found" });
+        }
+
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: "Internal server error on register" })
+    }
+}
+module.exports = { login, register, auto_login, update_profile }
