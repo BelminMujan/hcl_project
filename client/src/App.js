@@ -6,7 +6,7 @@ import Landing from "./Screens/Landing/Landing";
 import Api from "./Helpers/Api";
 import Jobs from "./Screens/Jobs/Jobs";
 import Dashboard from "./Screens/Dashboard/Dashboard";
-import { sidebar_urls } from "./Helpers/constants";
+import { nonSidebarurls, sidebar_urls } from "./Helpers/constants";
 import { useSelector } from "react-redux";
 
 const App = () => {
@@ -31,7 +31,7 @@ const App = () => {
     {
       path: "/dashboard",
       element: <Dashboard />,
-      children: [...sidebar_urls]
+      children: [...sidebar_urls, ...nonSidebarurls]
     }
   ])
 

@@ -17,17 +17,19 @@ const get = async (req, res) => {
                 break;
             case "saved":
                 console.log("Getting saved jobs");
-                console.log(req.user);
                 let user = await User.findByPk(req.user.userId)
                 jobs = await user.getSavedJobs()
                 console.log(jobs);
                 break;
             default:
                 let users = await Job.findAll({
+                    order: [['createdAt', 'DESC']],
+                    limit: parseInt(req?.query?.top) || 9999,
                     include: {
                         model: User,
                         as: "usersSaved",
-                    }
+                    },
+
                 })
 
                 jobs = users.map(job => {
@@ -92,6 +94,32 @@ const remove_saved_job = async (req, res) => {  //depricated
     }
 }
 
+const details = async (req, res) => {
+    console.log("getting details");
+    try {
+        let job = await Job.findOne({
+            where: { id: req.params.id }, include: {
+                model: User,
+                as: "usersSaved",
+            },
+        })
+        if (!job) {
+            return res.status(404).json({ error: "Posao ne postoji" });
+        }
+        job = job.toJSON()
+        job.usersSaved.forEach(u => {
+            if (u.id === req.user.userId) {
+                job['user'] = u
+                job["isSaved"] = true
+            }
+        })
+        delete job.usersSaved
+        return res.status(200).json(job)
+    } catch (error) {
+        res.status(500).json({ error: "Internal server error on job details loading" })
+    }
+}
+
 const objavi_oglas = async (req, res) => {
     try {
         const { title, description, city, address, trajanje_od, trajanje_do, termin_od, termin_do } = req.body
@@ -137,4 +165,4 @@ const izbrisi_oglas = async (req, res) => {
     }
 }
 
-module.exports = { get, save_job, objavi_oglas, izbrisi_oglas, remove_saved_job }
+module.exports = { get, save_job, objavi_oglas, izbrisi_oglas, remove_saved_job, details }

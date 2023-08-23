@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import img1 from "../../Assets/image 2.png"
 import img2 from "../../Assets/image 3.png"
@@ -6,28 +6,19 @@ import Button from "../../Components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import JobItem from "../../Components/JobItem/JobItem";
 import Footer from "../../Components/Footer/Footer";
+import Api from "../../Helpers/Api";
+import { useSelector } from "react-redux";
 const Landing = () => {
     const navigate = useNavigate()
 
-    const [jobs, setJobs] = useState([
-        {
-            title: "Potreban elektricar",
-            description: "Potrebno postavljanje dodatnih uticnica",
-            location: "Sarajevo, centar",
-            duration: "2 do 3 sata"
-        }, {
-            title: "Potreban elektricar",
-            description: "Potrebno postavljanje dodatnih uticnica",
-            location: "Sarajevo, centar",
-            duration: "2 do 3 sata"
-        }, {
-            title: "Potreban elektricar",
-            description: "Potrebno postavljanje dodatnih uticnica",
-            location: "Sarajevo, centar",
-            duration: "2 do 3 sata"
-        },
-    ])
-
+    const api = new Api()
+    const [jobs, setJobs] = useState([])
+    useEffect(() => {
+        api.request("/jobs?top=3").then(data => {
+            console.log(data);
+            setJobs([...data])
+        })
+    }, [])
     const handleButton = () => {
         return navigate("/login")
     }
@@ -75,7 +66,16 @@ const Landing = () => {
 export default Landing
 
 const Actions1 = () => {
+    let isLogged = useSelector(state => state.user)
+    const navigate = useNavigate()
+    const handlePrijava = () => {
+        if (isLogged && Object.keys(isLogged).length) {
+
+        } else {
+            navigate("/login")
+        }
+    }
     return <div className="actions">
-        <Button size={2}>Prijavi se za posao</Button>
+        <Button size={2} onClick={handlePrijava}>Prijavi se za posao</Button>
     </div>
 }

@@ -6,6 +6,7 @@ import Button from "../../../Components/Button/Button";
 import Modal from "../../../Components/Modal/Modal";
 import NoviOglas from "../../../Components/NoviOglas/NoviOglas";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Oglasi = () => {
     const [jobs, setJobs] = useState()
@@ -15,6 +16,8 @@ const Oglasi = () => {
     useEffect(() => {
         api.request("/jobs/my", "GET").then(data => {
             setJobs([...data])
+        }).catch(e => {
+            console.log(e)
         })
     }, [])
     const closeModal = (success = false) => {
@@ -45,7 +48,7 @@ const Oglasi = () => {
             {noviOglas && <NoviOglas close={closeModal} />}
         </div>
         {jobs && jobs.map(job => {
-            return <JobItem key={job.id} {...job} actions={<Actions1 izbrisiOglas={() => izbrisiOglas(job.id)} />} />
+            return <JobItem key={job.id} {...job} actions={<Actions1 id={job.id} izbrisiOglas={() => izbrisiOglas(job.id)} />} />
         })}
     </div>
 }
@@ -54,9 +57,9 @@ export default Oglasi
 
 const Actions1 = (props) => {
     let api = new Api()
-
+    const navigate = useNavigate()
     return <div className="actions">
         <Button onClick={props.izbrisiOglas}>Izbrisi</Button>
-        <Button >Detalji</Button>
+        <Button onClick={() => navigate(`/dashboard/posao/${props?.id}`)} >Detalji</Button>
     </div>
 }

@@ -6,6 +6,7 @@ import Button from "../../../Components/Button/Button";
 import img1 from "../../../Assets/ph_star-light.svg"
 import img2 from "../../../Assets/ph_star-fill.svg"
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const Poslovi = () => {
     const [jobs, setJobs] = useState()
     const [showAll, setShowAll] = useState(true)
@@ -52,6 +53,7 @@ const Actions1 = () => {
 
 const Actions2 = (props) => {
     let api = new Api()
+    const navigate = useNavigate()
     const saveJob = () => {
         api.request("/jobs/save/" + props?.id).then(res => {
             console.log(res)
@@ -63,7 +65,7 @@ const Actions2 = (props) => {
         })
     }
     return <div className="actions">
-        <Button>Detalji</Button>
+        <Button onClick={() => navigate(`/dashboard/posao/${props?.id}`)}>Detalji</Button>
         <img onClick={saveJob} className="save_action" src={props?.isSaved ? img2 : img1} />
     </div>
 }

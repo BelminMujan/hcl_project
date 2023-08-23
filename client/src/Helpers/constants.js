@@ -3,10 +3,10 @@ import MojaUsluge from "../Screens/Dashboard/mojeUsluge/mojeUsluge";
 import Oglasi from "../Screens/Dashboard/oglasi/oglasi";
 import PodesavanjeProfila from "../Screens/Dashboard/podesavanjeProfila/podesavanjeProfila";
 import Poruke from "../Screens/Dashboard/poruke/poruke";
+import PosaoDetalji from "../Screens/Dashboard/posaoDetalji/PosaoDetalji";
 import PoslanePonude from "../Screens/Dashboard/poslanePonude/poslanePonude";
 import Poslovi from "../Screens/Dashboard/poslovi/Poslovi";
 import SacuvaniPoslovi from "../Screens/Dashboard/sacuvaniPoslovi/SacuvaniPoslovi";
-import Jobs from "../Screens/Jobs/Jobs";
 
 export const sidebar_urls = [
     {
@@ -37,7 +37,7 @@ export const sidebar_urls = [
     {
         label: "Moji oglasi",
         path: "oglasi",
-        element: <Oglasi />
+        element: <Oglasi />,
     },
     {
         label: "Kontakti",
@@ -48,5 +48,12 @@ export const sidebar_urls = [
         label: "Poruke",
         path: "poruke",
         element: <Poruke />
+    }
+]
+
+export const nonSidebarurls = [
+    {
+        path: "posao/:id",
+        element: <PosaoDetalji />
     }
 ]

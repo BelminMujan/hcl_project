@@ -1,7 +1,9 @@
-.input_wrapper{
+.input_wrapper {
     display: flex;
     flex-direction: column;
-    input{
+
+    input,
+    textarea {
         border-radius: 6px;
         padding: 6px 10px;
         border: 1px solid gray;

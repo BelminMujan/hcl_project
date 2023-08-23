@@ -3,6 +3,7 @@ import Api from "../../../Helpers/Api";
 import JobItem from "../../../Components/JobItem/JobItem";
 import Button from "../../../Components/Button/Button";
 import { toast } from "react-hot-toast"
+import { useNavigate } from "react-router-dom";
 const SacuvaniPoslovi = () => {
     const api = new Api()
     const [jobs, setJobs] = useState([])
@@ -34,7 +35,7 @@ const SacuvaniPoslovi = () => {
         <h4>Sacuvani poslovi</h4>
         <div className="job_list">
             {jobs && jobs.map(job => {
-                return <JobItem key={job.id} {...job} actions={[<Actions1 removeFromSaved={() => removeFromSaved(job.id)} />, <Actions2 />]} />
+                return <JobItem key={job.id} {...job} actions={[<Actions1 removeFromSaved={() => removeFromSaved(job.id)} />, <Actions2 id={job.id} />]} />
             })}
         </div>
     </div>
@@ -51,7 +52,8 @@ const Actions1 = ({ removeFromSaved }) => {
 }
 
 const Actions2 = (props) => {
+    const navigate = useNavigate()
     return <div className="actions">
-        <Button>Detalji</Button>
+        <Button onClick={() => navigate(`/dashboard/posao/${props?.id}`)}>Detalji</Button>
     </div>
 }

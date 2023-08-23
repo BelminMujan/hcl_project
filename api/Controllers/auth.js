@@ -98,7 +98,8 @@ const update_profile = async (req, res) => {
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 email: req.body.email,
-                password: req.body.password
+                password: req.body.password,
+                phone: req.body.phone
             });
 
             res.status(200).json({ message: "Profile updated successfully" });
