@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 
 $orange: #FF8040;
-$green: #FF8040;
+$green: #338573;
 
 body {
     font-family: "Roboto";
@@ -44,3 +44,7 @@ body {
 @import "./Screens/Dashboard/poslovi/poslovi";
 @import "./Screens/Dashboard/posaoDetalji/posaoDetalji";
 @import "./Screens/Dashboard/mojeUsluge/mojeUsluge";
+@import "./Components/UslugaItem/uslugaItem";
+@import "./Screens/Dashboard/sacuvaniPoslovi/sacuvaniPoslovi";
+@import "./Components/PonudaItem/ponudaItem";
+@import "./Screens/Dashboard/poslanePonude/poslanePonude";

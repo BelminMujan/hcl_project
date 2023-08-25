@@ -10,11 +10,19 @@ import { useParams } from "react-router-dom";
 import { toDateString } from "../../../Helpers/helpers";
 import Modal from "../../../Components/Modal/Modal";
 import Input from "../../../Components/Input/Input";
+import KontaktModal from "../../../Components/KontaktModal/KontaktModal";
 const PosaoDetalji = () => {
     const api = new Api()
     const [details, setDetails] = useState()
     const [showContact, setShowContact] = useState(false)
+    const [showPonuda, setShowPonuda] = useState(false)
+    const [offer_details, setOfferDetails] = useState("")
+    const [requirements, setRequirements] = useState("")
+    const [price_from, setPriceFrom] = useState("")
+    const [price_to, setPriceTo] = useState("")
+    const [alreadySent, setAlreadySent] = useState(false)
     const { id } = useParams();
+    const user = useSelector(state => state.user)
     const saveJob = () => {
         api.request("/jobs/save/" + id).then(res => {
             console.log(res)
@@ -25,34 +33,54 @@ const PosaoDetalji = () => {
 
         })
     }
-    useEffect(() => {
-        api.request("/jobs/details/" + id).then(data => {
-            setDetails(data)
-            console.log(data);
+    const sendOffer = () => {
+        let data = { offer_details, requirements, price_from, price_to, jobId: details.id }
+        api.request("/offer/save", "POST", data).then(res => {
+            console.log(res)
+            setShowPonuda()
+            toast.success(res.message)
+            getDetails()
         }).catch(e => {
-            console.log(e)
+            toast.error(e?.error)
+
         })
+    }
+    useEffect(() => {
+        getDetails()
     }, [])
 
+    const getDetails = () => api.request("/jobs/details/" + id).then(data => {
+        setDetails(data)
+        console.log(data);
+        data.jobOffers.forEach(jo => {
+            if (jo.userId == user.id) {
+                setAlreadySent(true)
+            }
+        })
+    }).catch(e => {
+        console.log(e)
+    })
+
     return <div className="posao_detalji_wrapper">
-        {showContact && <Modal close={() => setShowContact(false)}>
-            <div >
-                <h4>Kontakt</h4>
-                <p>Ime i Prezime: {details?.user?.firstName} {details?.user?.lastName}</p>
-                <p>Kontakt telefon: {details?.user?.phone}</p>
-                <p>Email: {details?.user?.email}</p>
-                <p>Grad: {details?.user?.city}</p>
-                <p>Adresa: {details?.user?.address}</p>
-                <div className="input_wrapper">
-                    <label>Posalji poruku</label>
-                    <textarea rows={8} />
+        {showContact && <KontaktModal close={() => setShowContact(false)} user={showContact} />}
+        {showPonuda && <Modal close={() => setShowPonuda(false)}>
+            <div className="offer_modal">
+                <h4>Posalji ponudu</h4>
+                <Input label="Detalji ponude" type="text" value={offer_details} onChange={setOfferDetails} />
+                <Input label="Uslovi" type="text" value={requirements} onChange={setRequirements} />
+                <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                    <label>Cijena</label>
+                    <Input type="number" min={0} value={price_from} onChange={setPriceFrom} />
+                    <label>do</label>
+                    <Input type="number" min={0} value={price_to} onChange={setPriceTo} />
                 </div>
                 <div style={{ display: "flex", justifyContent: "center", marginTop: "1rem" }}>
-                    <Button style={{ margin: "auto" }} size={2}>Posalji</Button>
+                    <Button onClick={sendOffer} style={{ margin: "auto" }} size={2}>Posalji</Button>
                 </div>
             </div>
 
-        </Modal>}
+        </Modal>
+        }
         <div>
             <div className="top">
                 <h3>{details?.title}</h3>
@@ -62,13 +90,25 @@ const PosaoDetalji = () => {
             <p>Lokacija: {details?.city} {details?.address && `, ${details?.address}`}</p>
             <p>Trajanje posla: {details?.trajanje_od} {details?.trajanje_do && `do ${details?.trajanje_do}`}</p>
             <p>U terminu od {toDateString(details?.termin_od)} {details?.termin_do && `do ${toDateString(details?.termin_do)}`}</p>
-            <div className="options">
-                <Button>Posalji ponudu</Button>
-                <Button onClick={() => setShowContact(true)}>Kontakt</Button>
-            </div>
+            {details?.userId != user.id && < div className="options">
+                {!alreadySent && <Button onClick={() => setShowPonuda(true)}>Posalji ponudu</Button>}
+                <Button onClick={() => setShowContact(details?.user)}>Kontakt</Button>
+            </div>}
+            {details?.jobOffers && details?.jobOffers.length != 0 && details.jobOffers.map(offer => {
+                if (offer.userId == user.id || details.userId == user.id) {
+                    return <div key={offer.id}>
+                        <h4>Detalji poslate ponude</h4>
+                        <p>Detalji: {offer?.details}</p>
+                        <p>Uslovi: {offer?.requirements}</p>
+                        <p>Cijena od {offer?.price_from} do {offer?.price_to}</p>
+                        <p>Status: {offer?.status}</p>
+                        <Button onClick={() => setShowContact(offer?.user)}>Kontakt ponude</Button>
+                    </div>
+                }
+            })}
         </div>
 
-    </div>
+    </div >
 }
 
 export default PosaoDetalji

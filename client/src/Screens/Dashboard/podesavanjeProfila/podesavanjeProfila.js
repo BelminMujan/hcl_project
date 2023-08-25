@@ -11,6 +11,8 @@ const PodesavanjeProfila = () => {
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
+    const [city, setCity] = useState("")
+    const [address, setAddress] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirm, setPasswordConfirm] = useState("")
     useEffect(() => {
@@ -18,12 +20,14 @@ const PodesavanjeProfila = () => {
         setLastName(user.lastName)
         setEmail(user.email)
         setPhone(user.phone)
+        setCity(user.city)
+        setAddress(user.address)
     }, [user])
     const api = new Api()
     const save = () => {
-        let data = { id: user.id, firstName, lastName, email, phone }
+        let data = { id: user.id, firstName, lastName, email, phone, city, address }
         if (password || passwordConfirm) {
-            if (password === passwordConfirm) {
+            if (password != "" && password === passwordConfirm) {
                 data.password = password
             } else {
                 return toast.error("Sifre se ne poklapaju")
@@ -42,6 +46,8 @@ const PodesavanjeProfila = () => {
         <Input label="Prezime" value={lastName} onChange={(e) => setLastName(e)} />
         <Input label="Email" name="email" value={email} onChange={(e) => setEmail(e)} />
         <Input label="Telefon" name="tel" value={phone} onChange={(e) => setPhone(e)} />
+        <Input label="Grad" name="text" value={city} onChange={(e) => setCity(e)} />
+        <Input label="Adresa" name="text" value={address} onChange={(e) => setAddress(e)} />
         <Input type="password" label="Sifra" value={password} onChange={(e) => setPassword(e)} />
         <Input type="password" label="Potvrdi sifru" value={passwordConfirm} onChange={(e) => setPasswordConfirm(e)} />
         <Button onClick={save}>Sacuvaj promjene</Button>

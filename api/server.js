@@ -6,6 +6,7 @@ const { sequelize, runMigrations, rollbackLastMigration } = require('./database'
 const authRouter = require("./Routes/authRouter")
 const jobsRouter = require("./Routes/jobsRouter")
 const uslugeRouter = require("./Routes/uslugeRouter")
+const offerRouter = require("./Routes/offerRouter")
 require('./Models/associations');
 
 const app = express()
@@ -15,6 +16,7 @@ app.use(bodyParser.json())
 app.use("/auth", authRouter)
 app.use("/jobs", jobsRouter)
 app.use("/usluga", uslugeRouter)
+app.use("/offer", offerRouter)
 
 
 app.get("/migrate", (req, res) => {

@@ -60,6 +60,10 @@ body {
   color: #FF8040;
   border: 1px solid #FF8040;
 }
+.button_wrapper.version_3 {
+  background-color: #338573;
+  color: white;
+}
 
 .navbar_wrapper {
   display: flex;
@@ -146,8 +150,9 @@ body {
 }
 
 .usluga_item .image {
-  background-color: #FF8040;
+  background-color: #338573;
 }
+
 .footer_wrapper {
   min-height: 240px;
   color: white;
@@ -386,8 +391,51 @@ body {
   display: flex;
   gap: 10px;
 }
+.posao_detalji_wrapper .offer_modal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
 .moje_usluge_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.usluga_item .image {
+  background-color: #338573;
+}
+
+.sacuvani_poslovi_wrapper .job_list {
+  width: 100%;
+  margin: unset;
+  max-width: unset;
+}
+
+.ponuda_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 2px gray;
+  padding: 10px 25px;
+  border-radius: 8px;
+}
+.ponuda_item .right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ponuda_item .status {
+  background-color: #FF8040;
+  width: 100px;
+  text-align: center;
+  padding: 6px;
+  border-radius: 8px;
+  color: white;
+}
+
+.poslane_ponude_wrapper {
   display: flex;
   flex-direction: column;
   gap: 8px;

@@ -36,6 +36,7 @@ const Poslovi = () => {
     }, [])
 
     return <div className="poslovi_wrapper">
+        <h3>Poslovi</h3>
         {jobs && jobs.map(job => {
             return <JobItem {...job} actions={user && Object.keys(user).length > 0 ? <Actions2 {...job} updateSaved={updateSaved} /> : <Actions1 />} />
         })}
@@ -46,8 +47,17 @@ export default Poslovi
 
 
 const Actions1 = () => {
+    let isLogged = useSelector(state => state.user)
+    const navigate = useNavigate()
+    const handlePrijava = () => {
+        if (isLogged && Object.keys(isLogged).length) {
+
+        } else {
+            navigate("/login")
+        }
+    }
     return <div className="actions">
-        <Button size={2}>Prijavi se za posao</Button>
+        <Button size={2} onClick={handlePrijava}>Prijavi se za posao</Button>
     </div>
 }
 

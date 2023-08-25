@@ -7,6 +7,7 @@ import PosaoDetalji from "../Screens/Dashboard/posaoDetalji/PosaoDetalji";
 import PoslanePonude from "../Screens/Dashboard/poslanePonude/poslanePonude";
 import Poslovi from "../Screens/Dashboard/poslovi/Poslovi";
 import SacuvaniPoslovi from "../Screens/Dashboard/sacuvaniPoslovi/SacuvaniPoslovi";
+import Usluge from "../Screens/Dashboard/usluge/Usluge";
 
 export const sidebar_urls = [
     {
@@ -18,6 +19,11 @@ export const sidebar_urls = [
         label: "Poslovi",
         path: "jobs",
         element: <Poslovi />
+    },
+    {
+        label: "Usluge",
+        path: "usluge",
+        element: <Usluge />
     },
     {
         label: "Sacuvani poslovi",

@@ -62,7 +62,7 @@ const register = async (req, res) => {
             firstName: firstName,
             lastName: lastName,
             email: email,
-            password: password
+            password: password,
         })
         newUser = newUser.get()
         delete newUser.password
@@ -94,13 +94,21 @@ const update_profile = async (req, res) => {
     try {
         let user = await User.findOne({ where: { id: req.body.id } });
         if (user) {
+            console.log(req.body);
             await user.update({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 email: req.body.email,
-                password: req.body.password,
-                phone: req.body.phone
+                phone: req.body.phone,
+                city: req.body.city,
+                address: req.body.address,
             });
+            if (req.body.password && req.body.password != "") {
+                console.log("mjenjanje sifre");
+                await user.update({
+                    password: req.body.password
+                })
+            }
 
             res.status(200).json({ message: "Profile updated successfully" });
         } else {

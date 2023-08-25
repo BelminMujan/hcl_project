@@ -1,4 +1,5 @@
 const Job = require("../Models/job")
+const Offer = require("../Models/offer")
 const User = require("../Models/user")
 const UserJob = require("../Models/userjob")
 
@@ -31,7 +32,6 @@ const get = async (req, res) => {
                     },
 
                 })
-
                 jobs = users.map(job => {
                     let temp = job.toJSON()
                     temp.isSaved = job.usersSaved.filter(user => user.id === req.user?.userId).length
@@ -98,10 +98,25 @@ const details = async (req, res) => {
     console.log("getting details");
     try {
         let job = await Job.findOne({
-            where: { id: req.params.id }, include: {
+            where: { id: req.params.id }, include: [{
                 model: User,
                 as: "usersSaved",
-            },
+                where: {
+                    id: req.user.userId
+                },
+                required: false,
+            }, {
+                model: Offer,
+                as: "jobOffers",
+                include: {
+                    model: User,
+                    as: "user"
+                },
+                // where: {
+                //     userId: req.user.userId
+                // },
+                required: false,
+            }],
         })
         if (!job) {
             return res.status(404).json({ error: "Posao ne postoji" });
@@ -109,11 +124,13 @@ const details = async (req, res) => {
         job = job.toJSON()
         job.usersSaved.forEach(u => {
             if (u.id === req.user.userId) {
-                job['user'] = u
+                // job['user'] = u
                 job["isSaved"] = true
             }
         })
+        job["user"] = await User.findByPk(job.userId)
         delete job.usersSaved
+        // delete job.jobOffers
         return res.status(200).json(job)
     } catch (error) {
         res.status(500).json({ error: "Internal server error on job details loading" })
@@ -123,16 +140,16 @@ const details = async (req, res) => {
 const objavi_oglas = async (req, res) => {
     try {
         const { title, description, city, address, trajanje_od, trajanje_do, termin_od, termin_do } = req.body
-        if (!title || !description || !city) {
+        if (!title || !description) {
             return res.status(400).json({ error: "Naslov, opis i grad su neophodni" });
         }
-
+        let user = await User.findByPk(req.user.userId)
         Job.create({
             userId: req.user.userId,
             title: title,
             description: description,
-            city: city,
-            address: address,
+            city: city || user.city,
+            address: address || user.address,
             trajanje_do: trajanje_do,
             trajanje_od: trajanje_od,
             termin_od: termin_od,

@@ -1,0 +1,26 @@
+.ponuda_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 2px gray;
+    padding: 10px 25px;
+    border-radius: 8px;
+
+
+    .right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .status {
+        background-color: $orange;
+        width: 100px;
+        text-align: center;
+        padding: 6px;
+        border-radius: 8px;
+        color: white
+    }
+
+
+}

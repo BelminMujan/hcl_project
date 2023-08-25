@@ -33,4 +33,9 @@
         color: $orange;
         border: 1px solid $orange;
     }
+
+    &.version_3 {
+        background-color: $green;
+        color: white;
+    }
 }

@@ -12,6 +12,14 @@ const Offer = sequelize.define('Offers', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    price_from: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    price_to: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
     userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -34,6 +42,12 @@ const Offer = sequelize.define('Offers', {
         defaultValue: status.SENT
     }
 }, {
+    indexes: [
+        {
+            unique: true,
+            fields: ['jobId', 'userId']
+        }
+    ]
 });
 
 module.exports = Offer
