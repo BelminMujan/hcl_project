@@ -49,6 +49,16 @@ const PosaoDetalji = () => {
         getDetails()
     }, [])
 
+    const handleStatusChange = (e) => {
+        console.log(e.target.value)
+        api.request(`/offer/change_status/${id}/${e.target.value}`).then(res => {
+            toast.success(res?.success)
+        }).catch(e => {
+            toast.error(e?.error)
+            console.log(e)
+        })
+    }
+
     const getDetails = () => api.request("/jobs/details/" + id).then(data => {
         setDetails(data)
         console.log(data);
@@ -101,8 +111,19 @@ const PosaoDetalji = () => {
                         <p>Detalji: {offer?.details}</p>
                         <p>Uslovi: {offer?.requirements}</p>
                         <p>Cijena od {offer?.price_from} do {offer?.price_to}</p>
-                        <p>Status: {offer?.status}</p>
-                        <Button onClick={() => setShowContact(offer?.user)}>Kontakt ponude</Button>
+                        <label>
+                            Status:
+                            <select onChange={handleStatusChange} value={offer?.status}>
+                                <option value={"sent"}>Sent</option>
+                                <option value={"being_reviewed"}>Beeing reviewed</option>
+                                <option value={"accepted"}>Accepted</option>
+                                <option value={"in_progress"}>In progress</option>
+                                <option value={"completed"}>Completed</option>
+                            </select>
+                        </label>
+                        <p>
+                            <Button onClick={() => setShowContact(offer?.user)}>Kontakt ponude</Button>
+                        </p>
                     </div>
                 }
             })}

@@ -50,5 +50,20 @@ const load = async (req, res) => {
     }
 }
 
+const changeStatus = async (req, res) => {
+    try {
+        console.log(req.params);
+        let offer = await Offer.findByPk(req?.params?.id)
+        await offer.update({
+            status: req?.params?.status
+        }
+        )
+        return res.status(200).json({ success: "Status promjenjen u " + req?.params?.status })
+    } catch (error) {
+        res.status(500).json({ error: "Internal server error on status change" })
 
-module.exports = { save, load }
+    }
+}
+
+
+module.exports = { save, load, changeStatus }
