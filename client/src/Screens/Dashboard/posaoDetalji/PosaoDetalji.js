@@ -49,10 +49,12 @@ const PosaoDetalji = () => {
         getDetails()
     }, [])
 
-    const handleStatusChange = (e) => {
+    const handleStatusChange = (e, id) => {
         console.log(e.target.value)
         api.request(`/offer/change_status/${id}/${e.target.value}`).then(res => {
             toast.success(res?.success)
+            getDetails()
+
         }).catch(e => {
             toast.error(e?.error)
             console.log(e)
@@ -114,7 +116,7 @@ const PosaoDetalji = () => {
                         <p>Cijena od {offer?.price_from} do {offer?.price_to}</p>
                         <label>
                             Status:
-                            <select onChange={handleStatusChange} value={offer?.status}>
+                            <select onChange={(e) => handleStatusChange(e, offer?.id)} value={offer?.status}>
                                 <option value={"sent"}>Sent</option>
                                 <option value={"being_reviewed"}>Beeing reviewed</option>
                                 <option value={"accepted"}>Accepted</option>
