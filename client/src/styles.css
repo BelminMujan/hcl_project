@@ -24,7 +24,8 @@ body {
   flex-direction: column;
 }
 .input_wrapper input,
-.input_wrapper textarea {
+.input_wrapper textarea,
+.input_wrapper select {
   border-radius: 6px;
   padding: 6px 10px;
   border: 1px solid gray;
@@ -170,6 +171,20 @@ body {
 .filters_wrapper {
   height: 100%;
   box-shadow: 2px 1px 2px lightgray;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.filters_wrapper .input_wrapper input,
+.filters_wrapper .input_wrapper select,
+.filters_wrapper .input_wrapper textarea {
+  border-color: #FF8040;
+}
+.filters_wrapper .inline {
+  display: grid;
+  grid-template-columns: 40% 20% 40%;
+  align-items: center;
+  text-align: center;
 }
 
 .modal_wrapper {

@@ -6,12 +6,17 @@ import Button from "../../../Components/Button/Button";
 import img1 from "../../../Assets/ph_star-light.svg"
 import img2 from "../../../Assets/ph_star-fill.svg"
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-const Poslovi = () => {
+import { useLocation, useNavigate } from "react-router-dom";
+import Modal from "../../../Components/Modal/Modal";
+import Filters from "../../../Components/Filters/Filters";
+const Poslovi = ({ filters = {} }) => {
     const [jobs, setJobs] = useState()
     const [showAll, setShowAll] = useState(true)
+    const [filteriModal, setFilteriModal] = useState(false)
+    const [localFilers, setLocalFilters] = useState(filters)
     let api = new Api()
     let user = useSelector(state => state.user)
+    const location = useLocation()
     if (!user || !Object.keys(user).length) {
         api.auto_login().then((res) => {
             console.log(res);
@@ -29,14 +34,28 @@ const Poslovi = () => {
     }
 
     useEffect(() => {
-        api.request("/jobs").then(data => {
-            console.log(data);
+        let temp = Object.keys(filters).length ? filters : localFilers
+        handleFiltering(temp)
+    }, [localFilers, filters])
+
+    const handleFiltering = (ff) => {
+        api.request(`/jobs?${Object.entries(ff).map(([key, value]) => {
+            return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+        }).join("&")}`).then(data => {
+            console.log(data)
             setJobs([...data])
+        }).catch(e => {
+            console.log(e)
         })
-    }, [])
+    }
 
     return <div className="poslovi_wrapper">
-        <h3>Poslovi</h3>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}><h3>Poslovi</h3>
+            {location?.pathname.includes("dashboard") && <Button onClick={() => setFilteriModal(true)}>Filteri</Button>}</div>
+
+        {filteriModal && <Modal close={() => setFilteriModal(false)}>
+            <Filters setFilters={setLocalFilters} />
+        </Modal>}
         {jobs && jobs.map(job => {
             return <JobItem {...job} actions={user && Object.keys(user).length > 0 ? <Actions2 {...job} updateSaved={updateSaved} /> : <Actions1 />} />
         })}

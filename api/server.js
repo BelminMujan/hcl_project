@@ -7,6 +7,7 @@ const authRouter = require("./Routes/authRouter")
 const jobsRouter = require("./Routes/jobsRouter")
 const uslugeRouter = require("./Routes/uslugeRouter")
 const offerRouter = require("./Routes/offerRouter")
+const categoriesRouter = require("./Routes/categoriesRouter")
 require('./Models/associations');
 
 const app = express()
@@ -17,6 +18,7 @@ app.use("/auth", authRouter)
 app.use("/jobs", jobsRouter)
 app.use("/usluga", uslugeRouter)
 app.use("/offer", offerRouter)
+app.use("/categories", categoriesRouter)
 
 
 app.get("/migrate", (req, res) => {

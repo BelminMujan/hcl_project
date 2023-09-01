@@ -11,7 +11,7 @@ import img2 from "../../Assets/ph_star-fill.svg"
 import { toast } from "react-hot-toast";
 import Poslovi from "../Dashboard/poslovi/Poslovi";
 const Jobs = () => {
-    const [jobs, setJobs] = useState()
+    const [filters, setFilters] = useState()
     const [showAll, setShowAll] = useState(true)
     let api = new Api()
     let user = useSelector(state => state.user)
@@ -21,23 +21,25 @@ const Jobs = () => {
         })
     }
 
-    useEffect(() => {
-        api.request("/jobs").then(data => {
-            console.log(data);
-            setJobs([...data])
-        })
-    }, [])
+    // useEffect(() => {
+    //     api.request("/jobs").then(data => {
+    //         console.log(data);
+    //         setJobs([...data])
+    //     })
+    // }, [])
+
+
 
     return <div className="jobs_wrapper">
         <Navbar />
         <div className="content">
-            <Filters />
+            <Filters setFilters={setFilters} />
             <div className="job_list">
                 {user && Object.keys(user).length > 0 && <div className="sve_preporuceno">
                     <div onClick={() => setShowAll(true)} className={`item ${showAll ? "active" : ""}`}>Sve</div>
                     <div onClick={() => setShowAll(false)} className={`item ${showAll ? "" : "active"}`}>Preporuceno</div>
                 </div>}
-                <Poslovi />
+                <Poslovi filters={filters} />
             </div>
         </div>
         <Footer />

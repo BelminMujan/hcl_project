@@ -97,6 +97,7 @@ const PosaoDetalji = () => {
                 <img onClick={saveJob} className="save_action" src={details?.isSaved ? img2 : img1} />
             </div>
             <p>{details?.description}</p>
+            <p>Kategorija: {details?.category?.name}</p>
             <p>Lokacija: {details?.city} {details?.address && `, ${details?.address}`}</p>
             <p>Trajanje posla: {details?.trajanje_od} {details?.trajanje_do && `do ${details?.trajanje_do}`}</p>
             <p>U terminu od {toDateString(details?.termin_od)} {details?.termin_do && `do ${toDateString(details?.termin_do)}`}</p>

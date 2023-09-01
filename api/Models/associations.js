@@ -1,3 +1,4 @@
+const Category = require("./category");
 const Job = require("./job");
 const Offer = require("./offer");
 const User = require("./user");
@@ -15,3 +16,6 @@ Offer.belongsTo(Job, { as: 'job', foreignKey: 'jobId' });
 
 User.hasMany(Offer, { as: 'userOffers', foreignKey: 'userId' });
 Offer.belongsTo(User, { as: 'user', foreignKey: 'userId' });
+
+Job.belongsTo(Category, { as: "category", foreignKey: "categoryId" });
+Category.hasMany(Job, { as: "jobs", foreignKey: "categoryId" })
