@@ -1,10 +1,7 @@
 import React from "react";
-import mapIcon from "../../Assets/Map.svg"
-import hIcon from "../../Assets/h.svg"
-import Button from "../Button/Button";
 
 
-const PonudaItem = ({ details, jobId, createdAt, price_from, price_to, requirements, status }) => {
+const PonudaItem = ({ details, price_from, price_to, requirements, status }) => {
     return <div className="ponuda_item">
         <div>
             <div>Detalji: {details}</div>

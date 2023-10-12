@@ -1,9 +1,6 @@
 import React from "react";
-import logo from "../../Assets/JobSpot_no_shadow.svg"
 import { NavLink, useNavigate } from "react-router-dom"
-import Button from "../Button/Button";
 import { sidebar_urls } from "../../Helpers/constants";
-import { useDispatch } from "react-redux";
 import store from "../../Redux/store";
 
 const Sidebar = () => {

@@ -1,16 +1,6 @@
 import React from "react";
-import mapIcon from "../../Assets/Map.svg"
-import hIcon from "../../Assets/h.svg"
-import Button from "../Button/Button";
-import Api from "../../Helpers/Api";
 
-
-const UslugaItem = ({ title, description, hourlyRate, izbrisi, actions }) => {
-    const handleDelete = () => {
-        if (window.confirm("Da li sigurno zelite izbrisati uslugu?") === true) {
-            izbrisi()
-        }
-    }
+const UslugaItem = ({ title, description, actions }) => {
     return <div className="job_item usluga_item">
         <div className="image">U</div>
         <div className="details">
@@ -20,8 +10,7 @@ const UslugaItem = ({ title, description, hourlyRate, izbrisi, actions }) => {
         </div>
         <div className="actions">
             {actions}
-            {/* <p>{hourlyRate}</p>
-            <Button onClick={handleDelete}>Izbrisi</Button> */}
+
         </div>
 
     </div>

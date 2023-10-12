@@ -1,7 +1,6 @@
 import React from "react";
 import mapIcon from "../../Assets/Map.svg"
 import hIcon from "../../Assets/h.svg"
-import Button from "../Button/Button";
 import { useSelector } from "react-redux";
 
 
