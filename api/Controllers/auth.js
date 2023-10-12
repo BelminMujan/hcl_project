@@ -103,7 +103,7 @@ const update_profile = async (req, res) => {
                 city: req.body.city,
                 address: req.body.address,
             });
-            if (req.body.password && req.body.password != "") {
+            if (req.body.password && req.body.password !== "") {
                 console.log("mjenjanje sifre");
                 await user.update({
                     password: req.body.password

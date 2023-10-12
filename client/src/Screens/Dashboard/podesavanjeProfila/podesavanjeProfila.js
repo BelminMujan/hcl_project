@@ -27,7 +27,7 @@ const PodesavanjeProfila = () => {
     const save = () => {
         let data = { id: user.id, firstName, lastName, email, phone, city, address }
         if (password || passwordConfirm) {
-            if (password != "" && password === passwordConfirm) {
+            if (password !== "" && password === passwordConfirm) {
                 data.password = password
             } else {
                 return toast.error("Sifre se ne poklapaju")

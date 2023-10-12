@@ -57,7 +57,7 @@ const Landing = () => {
             {jobs && jobs.map(job => {
                 return <JobItem {...job} actions={<Actions1 />} />
             })}
-            {jobs && jobs.length != 0 && <Button onClick={loadMore} style={{ alignSelf: "center" }}>Ucitaj jos</Button>}
+            {jobs && jobs.length !== 0 && <Button onClick={loadMore} style={{ alignSelf: "center" }}>Ucitaj jos</Button>}
 
         </div>
 

@@ -38,7 +38,7 @@ const load = async (req, res) => {
         if (type === "my") {
             offers = await Offer.findAll({ where: { userId: req?.user?.userId } })
         }
-        if (offers.length != 0) {
+        if (offers.length !== 0) {
             return res.status(200).json(offers)
         } else {
             return res.status(404).json({ error: "Nema ponuda" })

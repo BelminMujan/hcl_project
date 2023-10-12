@@ -14,7 +14,7 @@ const get = async (req, res) => {
         let filters = req?.query
         let where = {}
         Object.keys(filters).map(key => {
-            if (filters[key] && filters[key] != null && filters[key] != "") {
+            if (filters[key] && filters[key] !== null && filters[key] !== "") {
                 switch (key) {
                     case "top":
                         break;

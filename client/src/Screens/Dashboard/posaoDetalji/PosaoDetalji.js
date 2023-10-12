@@ -102,11 +102,11 @@ const PosaoDetalji = () => {
             <p>Lokacija: {details?.city} {details?.address && `, ${details?.address}`}</p>
             <p>Trajanje posla: {details?.trajanje_od} {details?.trajanje_do && `do ${details?.trajanje_do}`}</p>
             <p>U terminu od {toDateString(details?.termin_od)} {details?.termin_do && `do ${toDateString(details?.termin_do)}`}</p>
-            {details?.userId != user.id && < div className="options">
+            {details?.userId !== user.id && < div className="options">
                 {!alreadySent && <Button onClick={() => setShowPonuda(true)}>Posalji ponudu</Button>}
                 <Button onClick={() => setShowContact(details?.user)}>Kontakt</Button>
             </div>}
-            {details?.jobOffers && details?.jobOffers.length != 0 && details.jobOffers.map(offer => {
+            {details?.jobOffers && details?.jobOffers.length !== 0 && details.jobOffers.map(offer => {
                 if (offer.userId === user.id || details.userId === user.id) {
                     return <div key={offer.id}>
                         <h4>Detalji poslate ponude</h4>

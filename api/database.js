@@ -25,29 +25,32 @@ if (process.env.NODE_ENV === "production") {
             pool: {
                 max: 100,
                 min: 0,
-                idle: 200000,
-                acquire: 1000000,
+                idle: 30000,
+                acquire: 10000,
             },
         }
     );
 }
 
-sequelize
-    .authenticate()
-    .then(() => {
-        console.log('Database connected');
-
-        sequelize.sync({ force: false }).then(() => {
-            console.log('Database and tables synchronized.');
-        })
+const tryDatabaseConnection = () => {
+    sequelize
+        .authenticate()
+        .then(() => {
+            console.log('Database connected');
+            sequelize.sync({ force: false }).then(() => {
+                console.log('Database and tables synchronized.');
+            })
             .catch((err) => {
                 console.error('Error synchronizing database:', err);
             });
+        })
+        .catch((err) => {
+            console.error('Unable to connect to the database:', err);
+            setTimeout(tryDatabaseConnection, 5000);
+        });
+};
 
-    })
-    .catch((err) => {
-        console.error('Unable to connect to the database:', err);
-    });
+tryDatabaseConnection();
 
 
 
