@@ -44,10 +44,10 @@ const Landing = () => {
                 <h2>Nudis neke <br />usluge?</h2>
                 <Button size={2} onClick={handleButton}>Prijavi se</Button>
             </div>
-            <img src={img1} />
+            <img alt="" src={img1} />
         </section>
         <section>
-            <img src={img2} />
+            <img alt="" src={img2} />
             <div>
                 <h2>Potrebne su <br />ti usluge?</h2>
                 <Button size={2} onClick={handleButton}>Prijavi se</Button>

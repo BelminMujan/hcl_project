@@ -1,3 +1,4 @@
+const { Sequelize, DataTypes } = require('sequelize');
 const { sequelize } = require("../database")
 
 const Job = sequelize.define('Jobs', {

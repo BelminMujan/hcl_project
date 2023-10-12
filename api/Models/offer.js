@@ -1,3 +1,4 @@
+const { Sequelize, DataTypes } = require('sequelize');
 const { sequelize } = require("../database")
 
 const status = require("../Helpers/status")

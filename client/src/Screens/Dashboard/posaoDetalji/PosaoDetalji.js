@@ -64,7 +64,7 @@ const PosaoDetalji = () => {
         setDetails(data)
         console.log(data);
         data.jobOffers.forEach(jo => {
-            if (jo.userId == user.id) {
+            if (jo.userId === user.id) {
                 setAlreadySent(true)
             }
         })
@@ -95,7 +95,7 @@ const PosaoDetalji = () => {
         <div>
             <div className="top">
                 <h3>{details?.title}</h3>
-                <img onClick={saveJob} className="save_action" src={details?.isSaved ? img2 : img1} />
+                <img alt="" onClick={saveJob} className="save_action" src={details?.isSaved ? img2 : img1} />
             </div>
             <p>{details?.description}</p>
             <p>Kategorija: {details?.category?.name}</p>
@@ -107,7 +107,7 @@ const PosaoDetalji = () => {
                 <Button onClick={() => setShowContact(details?.user)}>Kontakt</Button>
             </div>}
             {details?.jobOffers && details?.jobOffers.length != 0 && details.jobOffers.map(offer => {
-                if (offer.userId == user.id || details.userId == user.id) {
+                if (offer.userId === user.id || details.userId === user.id) {
                     return <div key={offer.id}>
                         <h4>Detalji poslate ponude</h4>
                         <p>Detalji: {offer?.details}</p>

@@ -32,14 +32,14 @@ const Navbar = () => {
     const user = useSelector(state => state.user)
 
     return <div className="navbar_wrapper">
-        <Link to="/"><img src={logo} /></Link>
+        <Link to="/"><img alt="" src={logo} /></Link>
         {!window.location.pathname.includes("dashboard") && <div>
             {navs.map((nav, i) => {
                 return <NavLink key={nav.to + i} className={"nav_link"} to={nav.to}>{nav.label}</NavLink>
             })}
         </div>}
         {user && Object.keys(user).length > 0 ? <Link to={"/dashboard/podesavanje_profila"}>
-            <img src={user_img} />
+            <img alt="" src={user_img} />
         </Link> : <div>
             <Link to={"/login"}><Button>Login</Button></Link>
             <Link to={"/register"}><Button version={2}>Register</Button></Link>
