@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Button from "../../../Components/Button/Button";
 import NovaUsluga from "../../../Components/NovaUsluga/NovaUsluga"
 import Api from "../../../Helpers/Api";
-import JobItem from "../../../Components/JobItem/JobItem";
 import UslugaItem from "../../../Components/UslugaItem/UslugaItem";
 import { toast } from "react-hot-toast";
 const MojaUsluge = () => { //Moje usluge

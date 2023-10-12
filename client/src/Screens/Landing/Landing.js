@@ -17,6 +17,8 @@ const Landing = () => {
         api.request("/jobs?top=3").then(data => {
             console.log(data);
             setJobs([...data])
+        }).catch(e=>{
+            console.log(e)
         })
     }, [])
     const handleButton = () => {
@@ -32,7 +34,7 @@ const Landing = () => {
                 <h2>Radi sta zelis</h2>
                 <h2>Radi kako zelis</h2>
                 <div>
-                    <h3>5000+</h3>
+                    <h3>6000+</h3>
                     <p>Registrovanih korisnika</p>
                 </div>
             </div>

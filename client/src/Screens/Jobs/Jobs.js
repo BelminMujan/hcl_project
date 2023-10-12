@@ -1,14 +1,9 @@
-import React, { useEffect, useState } from "react";
-import JobItem from "../../Components/JobItem/JobItem";
+import React, { useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import Filters from "../../Components/Filters/Filters";
 import Footer from "../../Components/Footer/Footer";
 import Api from "../../Helpers/Api";
 import { useSelector } from "react-redux";
-import Button from "../../Components/Button/Button";
-import img1 from "../../Assets/ph_star-light.svg"
-import img2 from "../../Assets/ph_star-fill.svg"
-import { toast } from "react-hot-toast";
 import Poslovi from "../Dashboard/poslovi/Poslovi";
 const Jobs = () => {
     const [filters, setFilters] = useState()
@@ -20,15 +15,6 @@ const Jobs = () => {
             console.log(res);
         })
     }
-
-    // useEffect(() => {
-    //     api.request("/jobs").then(data => {
-    //         console.log(data);
-    //         setJobs([...data])
-    //     })
-    // }, [])
-
-
 
     return <div className="jobs_wrapper">
         <Navbar />

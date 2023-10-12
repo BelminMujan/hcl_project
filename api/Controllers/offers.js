@@ -1,5 +1,3 @@
-const Usluga = require("../Models/usluga")
-const User = require("../Models/user")
 const Offer = require("../Models/offer")
 const status = require("../Helpers/status")
 

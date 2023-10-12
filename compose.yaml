@@ -1,0 +1,46 @@
+services:
+  db:
+    image: mysql:8.1.0
+    command: '--default-authentication-plugin=caching_sha2_password'
+    restart: always
+    expose:
+      - '3307'
+    ports:
+      - '3307:3306'
+    environment:
+      - MYSQL_DATABASE=hcl_project
+      - MYSQL_ROOT_PASSWORD=belmin1234
+    volumes:
+      - mysql_db:/var/lib/mysql
+  backend:
+    build:
+      args:
+      - NODE_ENV=development
+      context: api
+    command: node server.js
+    ports:
+      - 3001:3001
+    volumes:
+      - ./api/src:/app/src:ro
+      - ./api/package.json:/app/package.json
+      - ./api/package-lock.json:/app/package-lock.json
+      - /app/node_modules
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: client
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client/src:/app/src
+      - /app/node_modules
+    depends_on:
+      - backend
+networks:
+  public:
+  private:
+volumes:
+  back-notused:
+  mysql_db:

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import JobItem from "../../../Components/JobItem/JobItem";
 import Api from "../../../Helpers/Api";
 import { useSelector } from "react-redux";
 import Button from "../../../Components/Button/Button";

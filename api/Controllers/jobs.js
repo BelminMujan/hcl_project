@@ -1,4 +1,4 @@
-const { Op, literal } = require("sequelize")
+const { Op } = require("sequelize")
 const Category = require("../Models/category")
 const Job = require("../Models/job")
 const Offer = require("../Models/offer")

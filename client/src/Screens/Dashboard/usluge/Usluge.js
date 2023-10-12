@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from "react";
-import JobItem from "../../../Components/JobItem/JobItem";
 import Api from "../../../Helpers/Api";
 import { useSelector } from "react-redux";
-import Button from "../../../Components/Button/Button";
-import img1 from "../../../Assets/ph_star-light.svg"
-import img2 from "../../../Assets/ph_star-fill.svg"
-import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import UslugaItem from "../../../Components/UslugaItem/UslugaItem";
-import Modal from "../../../Components/Modal/Modal";
 import KontaktModal from "../../../Components/KontaktModal/KontaktModal";
 const Usluge = () => {
     const [usluge, setUsluge] = useState()

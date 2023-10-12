@@ -3,7 +3,6 @@ import Api from "../../../Helpers/Api";
 import { useSelector } from "react-redux";
 import JobItem from "../../../Components/JobItem/JobItem";
 import Button from "../../../Components/Button/Button";
-import Modal from "../../../Components/Modal/Modal";
 import NoviOglas from "../../../Components/NoviOglas/NoviOglas";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +23,8 @@ const Oglasi = () => {
         if (success) {
             api.request("/jobs/my", "GET").then(data => {
                 setJobs([...data])
+            }).catch(e=>{
+                console.log(e)
             })
         }
         setNoviOglas(false)
@@ -35,6 +36,8 @@ const Oglasi = () => {
                 console.log(res)
                 api.request("/jobs/my", "GET").then(data => {
                     setJobs([...data])
+                }).catch(e => {
+                    console.log(e)
                 })
             }).catch(e => {
                 toast.error("Error prilikom brisanja oglasa!")

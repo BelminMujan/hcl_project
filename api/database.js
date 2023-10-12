@@ -2,10 +2,35 @@ const { Sequelize } = require("sequelize");
 // const { Umzug, SequelizeStorage } = require('umzug');
 
 
-const sequelize = new Sequelize(process.env.DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
-    host: '127.0.0.1',
-    dialect: 'mysql',
-});
+// const sequelize = new Sequelize(process.env.DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
+//     host: process.env.DB_HOST,
+//     dialect: 'mysql',
+// });
+
+let sequelize;
+if (process.env.NODE_ENV === "production") {
+    sequelize = new Sequelize(process.env.DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
+        host: process.env.DB_HOST,
+        dialect: 'mysql',
+    })
+} else {
+    sequelize = new Sequelize(
+        process.env.DATABASE,
+        process.env.DB_USERNAME,
+        process.env.DB_PASSWORD,
+        {
+            host: process.env.MYSQL_HOST,
+            port: process.env.MYSQL_PORT,
+            dialect: "mysql",
+            pool: {
+                max: 100,
+                min: 0,
+                idle: 200000,
+                acquire: 1000000,
+            },
+        }
+    );
+}
 
 sequelize
     .authenticate()
